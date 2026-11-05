@@ -1,11 +1,11 @@
-# Confidencialidade dos Dados — Grupo 1
+# Grupo 1 — Confidencialidade dos Dados
 
 **Curso:** Técnico em Defesa Cibernética — SENAC Goiás  
 **Unidade curricular:** UC5 — Aplicar técnicas de criptografia  
 **Atividade:** Construção de um Painel Colaborativo no Padlet  
-**Tema do Grupo 1:** Confidencialidade dos Dados
+**Tema atribuído:** **Confidencialidade dos Dados**
 
-> Projeto acadêmico colaborativo dedicado à pesquisa e à divulgação de conceitos de criptografia e proteção de informações.
+Este repositório documenta a pesquisa do **Grupo 1** e apresenta conteúdos prontos para serem publicados **exclusivamente na coluna numerada Grupo 1** do painel da turma.
 
 ## Integrantes
 
@@ -16,72 +16,68 @@
 5. Juliano Borges
 6. Gabriel Silveira
 
-A lista de integrantes foi transcrita do nome do arquivo da atividade fornecido pelo grupo.
+Os nomes seguem o arquivo da atividade entregue pelo grupo.
 
-## Objetivo da atividade
+## Conteúdos obrigatórios
 
-Pesquisar e compartilhar, em uma coluna do painel Padlet, os conhecimentos sobre **confidencialidade** e:
+Conforme a página 4 do enunciado fornecido pela professora, o Grupo 1 deve abordar:
 
-- criptografia **simétrica** e **assimétrica**;
-- algoritmos e protocolos **AES**, **RSA** e **Diffie-Hellman**;
-- aplicações de proteção de dados no **WhatsApp**, nos **serviços bancários** e em **VPNs**.
-
-O objetivo pedagógico da atividade é permitir que a turma visualize, discuta e amplie conhecimentos sobre criptografia e segurança da informação.
-
-## Resumo dos conceitos
-
-**Confidencialidade** é a propriedade de impedir que informações sejam lidas por pessoas ou sistemas não autorizados.
-
-| Tecnologia | Papel principal | Exemplo de aplicação |
+| Nº | Assunto | Conteúdo no repositório |
 | --- | --- | --- |
-| Criptografia simétrica | Criptografar e descriptografar com a mesma chave secreta | Proteção eficiente de arquivos e tráfego |
-| AES | Algoritmo de criptografia simétrica | AES-GCM para confidencialidade e integridade |
-| Criptografia assimétrica | Usa um par de chaves pública e privada | Autenticação, assinaturas e outros mecanismos criptográficos |
-| RSA | Algoritmo de chave pública | Assinaturas digitais; criptografia em sistemas compatíveis |
-| Diffie-Hellman | Acordo de chaves entre participantes | Estabelecimento de segredos compartilhados em protocolos seguros |
+| 1 | **Conceito de confidencialidade** | Definição, objetivos e exemplo cotidiano |
+| 2 | **Criptografia simétrica** | Funcionamento, chave compartilhada e vantagens |
+| 3 | **Criptografia assimétrica** | Chave pública, chave privada e finalidades |
+| 4 | **AES** | O que é, tamanhos de chave e uso com GCM |
+| 5 | **RSA** | Criptografia de chave pública e assinaturas |
+| 6 | **Diffie-Hellman** | Acordo de chaves e importância da autenticação |
+| 7 | **WhatsApp** | Criptografia ponta a ponta |
+| 8 | **Bancos** | HTTPS/TLS, proteção de transações e dados |
+| 9 | **VPNs** | Túneis criptografados e seus limites |
 
-**Importante:** Diffie-Hellman é um mecanismo de estabelecimento de chaves, não um algoritmo para criptografar diretamente mensagens. No TLS 1.3, o RSA pode participar da autenticação por assinatura, mas a troca de chaves não utiliza o antigo RSA estático.
+## Acessar os materiais
 
-## Organização do repositório
+- **[Texto completo da pesquisa](docs/pesquisa.md)** — explicação didática de todos os assuntos, tabela comparativa e boas práticas.
+- **[Cartões para o Padlet](docs/publicacao-padlet.md)** — sequência de textos já separados para publicação somente na coluna Grupo 1.
+- **[Resumo do enunciado da professora](docs/atividade-original.md)** — delimitação do trabalho e integrantes.
+- **[Fontes e referências técnicas](docs/fontes.md)** — NIST, IETF e outras referências para estudo.
 
-- [Pesquisa completa](docs/pesquisa.md) — fundamentação, comparações e aplicações.
-- [Conteúdo para o Padlet](docs/publicacao-padlet.md) — textos organizados em cartões para a coluna do Grupo 1.
-- [Enunciado resumido e critérios](docs/atividade-original.md) — transcrição resumida do material recebido.
-- [Fontes e referências](docs/fontes.md) — documentação técnica para consulta.
-- [Exemplo didático AES-GCM](exemplos/aes_gcm.py) — execução local de criptografia autenticada em Python.
-- [Testes](tests/test_aes_gcm.py) — validação do exemplo.
-- [Como contribuir](CONTRIBUTING.md) — fluxo de colaboração.
+## Como a proteção acontece na prática
 
-## Painel colaborativo da turma
-
-[Acessar o Padlet indicado no material da atividade](https://padlet.com/fabharami1/painel-colaborativo-criptografia-s0255lhstmap1kwi6242)
-
-**Situação:** o conteúdo de apoio está organizado neste repositório; a postagem no Padlet deve ser feita e conferida pelos integrantes. A existência deste repositório não comprova a publicação no Padlet.
-
-## Demonstração em Python (opcional)
-
-A demonstração usa AES-GCM para ilustrar o uso de uma chave secreta, um nonce único, a criptografia e a validação de integridade.
-
-No Windows (PowerShell), na pasta do repositório:
-
-```powershell
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-python exemplos/aes_gcm.py
-python -m unittest discover -s tests -v
+```text
+Duas partes querem conversar com segurança
+         |
+         v
+Autenticação + acordo de chaves (ex.: ECDHE)
+         |
+         v
+Chave de sessão compartilhada
+         |
+         v
+Criptografia simétrica (ex.: AES-GCM)
+         |
+         v
+Dados transmitidos protegidos contra leitura indevida
 ```
 
-No Linux/macOS, substitua a ativação por `source .venv/bin/activate` e use `python3` conforme a configuração local.
+**Atenção:** o desenho é simplificado; nem todos os aplicativos usam os mesmos protocolos. **RSA** pode atuar na autenticação ou em outros usos de chave pública, mas **Diffie-Hellman não cifra mensagens diretamente**.
 
-> O exemplo é educacional: não armazene segredos reais, não reutilize o par chave/nonce e use bibliotecas criptográficas auditadas em sistemas reais.
+## Link do Padlet da turma
 
-## Referências essenciais
+**[Abrir o Painel Colaborativo de Criptografia](https://padlet.com/fabharami1/painel-colaborativo-criptografia-s0255lhstmap1kwi6242)**
 
-- [NIST — FIPS 197 (AES)](https://csrc.nist.gov/pubs/fips/197/final)
-- [NIST — SP 800-38D (GCM)](https://csrc.nist.gov/pubs/sp/800/38/d/final)
-- [IETF — RFC 8446 (TLS 1.3)](https://www.rfc-editor.org/rfc/rfc8446)
+**Local de publicação:** coluna **Grupo 1 — Confidencialidade dos Dados**, sem modificar publicações dos Grupos 2, 3 e 4.
+
+### Critérios de conclusão
+
+- [x] Integrantes e tema registrados.
+- [x] Pesquisa organizada com todos os tópicos do enunciado.
+- [x] Textos para postagem separados por assunto.
+- [x] Referências técnicas documentadas.
+- [ ] Cartões publicados na coluna Grupo 1 do Padlet.
+- [ ] Publicações conferidas na própria plataforma.
+
+**Status:** documentação disponível no GitHub. **A publicação no Padlet ainda não foi confirmada.** Um commit no GitHub não significa que houve postagem na plataforma.
 
 ---
 
-**Origem:** atividade “Construção de um Painel Colaborativo no Padlet”, páginas 3 a 5 do PDF fornecido pelo grupo. Este repositório é um trabalho acadêmico dos integrantes listados, sem afiliação oficial à plataforma Padlet.
+Material acadêmico preparado a partir do enunciado da atividade fornecido ao Grupo 1. Informações técnicas adicionais são fundamentadas nas referências indicadas na pesquisa.
