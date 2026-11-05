@@ -1,75 +1,207 @@
-# Pesquisa — Grupo 1: Confidencialidade dos Dados
+# Pesquisa completa — Grupo 1: Confidencialidade dos Dados
 
-## Conceito
+**Curso:** Técnico em Defesa Cibernética — SENAC Goiás  
+**UC:** 5 — Aplicar técnicas de criptografia  
+**Atividade:** Painel colaborativo no Padlet  
+**Participantes:** Leonídio Junior, Daniel Medrado, Robson Niedson, Juliano Porto, Juliano Borges e Gabriel Silveira.
 
-A **confidencialidade** é a propriedade de garantir que informações sejam acessíveis apenas a pessoas ou sistemas autorizados. É um dos princípios centrais da segurança da informação, ao lado da integridade e da disponibilidade.
+## Objetivo e escopo
 
-**Exemplo cotidiano:** um documento trancado em um cofre só pode ser consultado por quem tem acesso autorizado. Na tecnologia, controles de acesso e criptografia ajudam a cumprir o mesmo objetivo.
+A professora atribuiu ao **Grupo 1** o tema **Confidencialidade dos Dados**, exigindo: conceito de confidencialidade, criptografia simétrica e assimétrica, AES, RSA, Diffie-Hellman e aplicações no WhatsApp, em bancos e em VPNs. Os itens a seguir correspondem a todos os assuntos do enunciado, na mesma ordem temática.
 
-## Criptografia simétrica
+## 1. Conceito de confidencialidade dos dados
 
-A criptografia simétrica utiliza **a mesma chave secreta** para cifrar e decifrar dados.
+A **confidencialidade** significa assegurar que uma informação só seja acessada por **pessoas e sistemas autorizados**. É um dos pilares da segurança da informação, acompanhado por integridade e disponibilidade.
 
-- **Vantagens:** velocidade e eficiência para grandes quantidades de dados.
-- **Desafio:** distribuir, armazenar e proteger a chave secreta.
+- **Confidencialidade:** quem pode **ler** as informações?
+- **Integridade:** como saber se uma informação foi **alterada**?
+- **Disponibilidade:** a informação está acessível quando é **necessária**?
 
-### AES (Advanced Encryption Standard)
+**Analogia:** uma pasta com documentos sigilosos fica em um armário trancado. A chave limita o acesso de pessoas. No meio digital, **criptografia, autenticação e controle de acesso** desempenham papéis complementares.
 
-AES é um algoritmo simétrico padronizado pelo NIST (FIPS 197). Possui bloco de 128 bits e opções de chave de 128, 192 ou 256 bits. Ele pode operar em modos diversos; **AES-GCM** é um modo de criptografia autenticada, que também detecta alterações não autorizadas no conteúdo cifrado.
+**Exemplo:** quando alguém intercepta uma mensagem que está criptografada corretamente, deve encontrar dados ilegíveis sem a chave. Porém, se o destinatário tiver seu dispositivo comprometido, a criptografia do trânsito não basta para proteger o texto já aberto.
 
-Usar AES não basta por si só: é necessário selecionar um modo apropriado, proteger as chaves e seguir os requisitos de nonce/IV.
+## 2. Criptografia simétrica
 
-## Criptografia assimétrica
+É o método em que a mesma **chave secreta** é utilizada para **cifrar** (tornar o conteúdo ilegível) e **decifrar** (recuperar o conteúdo).
 
-A criptografia assimétrica envolve um par de chaves relacionadas matematicamente: **pública** e **privada**.
+**Funcionamento básico:**
 
-- A chave pública pode ser compartilhada.
-- A chave privada deve permanecer protegida.
-- Dependendo do algoritmo, as chaves podem ser usadas em criptografia, assinaturas digitais ou mecanismos de estabelecimento de chaves.
+1. Remetente e destinatário dispõem da chave secreta.
+2. O remetente utiliza um algoritmo simétrico para cifrar a mensagem.
+3. O destinatário aplica o processo correspondente com a chave.
+4. Qualquer pessoa que obtenha indevidamente a chave pode comprometer a proteção, conforme o caso.
 
-### RSA
+**Vantagens:** rapidez e baixo custo computacional para grandes volumes de dados.  
+**Desafio:** armazenamento, compartilhamento e renovação seguros das chaves.
 
-RSA é um algoritmo assimétrico utilizado em mecanismos de criptografia e assinatura digital, conforme o protocolo e os esquemas de padding. Em tecnologias atuais, um certificado que usa RSA para autenticar não implica que RSA seja usado para cifrar todo o tráfego. No TLS 1.3, o antigo mecanismo de troca de chaves RSA estático foi removido.
+**Exemplo de algoritmo:** AES.
 
-## Diffie-Hellman
+## 3. AES — Advanced Encryption Standard
 
-Diffie-Hellman (DH) é uma família de mecanismos de **acordo de chaves**. Duas partes calculam um segredo compartilhado por meio de informações públicas e segredos privados. O resultado pode alimentar a derivação de uma chave simétrica para proteger a comunicação.
+O **AES** é um algoritmo de criptografia **simétrica** padronizado pelo **NIST FIPS 197**. Trabalha com blocos de **128 bits** e tamanhos de chave de **128, 192 ou 256 bits**.
 
-DH **não é um algoritmo de criptografia de mensagens**. Isolado, também não autentica a identidade das partes: sem autenticação, um adversário ativo pode intermediar a negociação. Variantes efêmeras, como ECDHE, podem oferecer sigilo futuro quando utilizadas adequadamente.
-
-## Comparação
-
-| Tecnologia | Categoria | Finalidade típica |
+| Versão | Tamanho da chave | Tamanho do bloco |
 | --- | --- | --- |
-| AES | Criptografia simétrica | Cifrar dados de forma eficiente |
-| RSA | Criptografia/assinatura assimétrica | Criptografia de chave pública e assinaturas |
-| Diffie-Hellman / ECDHE | Acordo de chaves | Estabelecer um segredo compartilhado |
-| AES-GCM | Criptografia autenticada | Proteger confidencialidade e detectar alterações |
+| AES-128 | 128 bits | 128 bits |
+| AES-192 | 192 bits | 128 bits |
+| AES-256 | 256 bits | 128 bits |
 
-## Aplicações práticas
+**Exemplo prático:** o conteúdo de um arquivo ou sessão pode ser protegido por AES com um modo de operação adequado.
 
-### WhatsApp
+**AES-GCM** é um modo de criptografia autenticada: permite proteger o conteúdo e detectar alterações não autorizadas nos dados protegidos. Para utilizá-lo corretamente é indispensável **não reutilizar um mesmo nonce com uma mesma chave**.
 
-O WhatsApp informa que mensagens pessoais e chamadas são protegidas por **criptografia ponta a ponta**: o conteúdo é protegido entre os dispositivos participantes. Isso não protege um aparelho já comprometido nem impede que um participante compartilhe a conversa. Os detalhes de algoritmos devem ser verificados na documentação técnica correspondente, sem presumir que o aplicativo utilize apenas AES ou RSA.
+**Observação:** AES isoladamente não estabelece a identidade do remetente nem resolve a distribuição de chaves. Essas funções são tratadas por outros mecanismos e protocolos.
 
-### Bancos
+**Referências:** [FIPS 197](https://csrc.nist.gov/pubs/fips/197/final) e [SP 800-38D](https://csrc.nist.gov/pubs/sp/800/38/d/final).
 
-Sites e aplicativos bancários usam mecanismos de proteção em trânsito, como **HTTPS/TLS**, e também podem empregar criptografia para dados armazenados. A segurança envolve autenticação do servidor, gestão de chaves, controles de acesso e autenticação dos usuários.
+## 4. Criptografia assimétrica
 
-### VPNs
+Usa **duas chaves relacionadas matematicamente**:
 
-VPNs criam túneis protegidos entre dispositivos e servidores. Os algoritmos variam segundo o protocolo e sua implementação: soluções baseadas em IPsec podem empregar AES-GCM; WireGuard utiliza ChaCha20-Poly1305. VPN não substitui cuidados com o próprio dispositivo.
+- **Pública:** pode ser disponibilizada aos interessados.
+- **Privada:** deve permanecer sob controle do titular.
 
-## Boas práticas
+Dependendo do algoritmo e do protocolo, o par pode servir à criptografia de chave pública, a assinaturas digitais e a outras operações criptográficas.
 
-1. Usar criptografia autenticada e bibliotecas confiáveis.
-2. Proteger chaves privadas e secretas; nunca colocá-las em repositórios.
-3. Verificar certificados e a autenticidade das partes.
-4. Manter os dispositivos atualizados e usar autenticação multifator.
-5. Evitar reutilizar nonce com a mesma chave em AES-GCM.
+**Analogia:** qualquer pessoa deposita uma carta em uma caixa de correio, mas somente quem tem a chave privada correspondente consegue acessar o conteúdo, em um modelo simplificado de criptografia de chave pública.
 
-## Conclusão
+**Vantagem:** facilita a comunicação segura entre partes que não compartilhavam anteriormente uma mesma chave secreta.  
+**Desafio:** exige validação da identidade associada à chave pública, além da proteção da chave privada.
 
-Confidencialidade resulta da **combinação** de algoritmos, protocolos e controles de segurança. AES é usado para criptografia simétrica; RSA é um exemplo de algoritmo assimétrico; Diffie-Hellman estabelece segredos para chaves de sessão. WhatsApp, aplicações bancárias e VPNs utilizam diferentes combinações de mecanismos para proteger dados.
+**Exemplo de algoritmo:** RSA.
 
-Referências: veja [fontes.md](fontes.md).
+## 5. RSA
+
+**RSA** é um algoritmo **assimétrico** associado ao uso de chaves pública e privada.
+
+**Aplicações:**
+
+- **Criptografia de chave pública:** pode proteger pequenos dados ou material de chave em esquemas apropriados.
+- **Assinatura digital:** pode comprovar que determinado conteúdo foi assinado com a chave privada correspondente e detectar alterações.
+- **Autenticação de entidades:** pode participar da validação de identidades por certificados digitais.
+
+**Diferença fundamental:** *criptografar* busca ocultar o conteúdo; *assinar* busca permitir verificação da origem e integridade. Uma assinatura não esconde a mensagem.
+
+**Nota técnica:** TLS 1.3 utiliza mecanismos modernos de estabelecimento de chaves. Um servidor pode apresentar certificado com assinatura RSA, mas isso não significa que a cifra de tráfego ou o acordo de chaves dependa do antigo intercâmbio RSA estático.
+
+**Referência:** [RFC 8446 — TLS 1.3](https://www.rfc-editor.org/rfc/rfc8446).
+
+## 6. Diffie-Hellman (DH)
+
+O **Diffie-Hellman** é um **mecanismo de acordo de chaves**: permite que dois participantes construam um **segredo compartilhado** mediante valores trocados publicamente e informações que cada participante mantém privadas.
+
+**Funcionamento conceitual:**
+
+1. Alice e Bob concordam com parâmetros públicos.
+2. Cada participante gera um segredo privado e um valor público correspondente.
+3. Eles trocam os valores públicos.
+4. Cada um calcula o segredo compartilhado.
+5. O protocolo deriva chaves de sessão que podem ser usadas em uma cifra simétrica.
+
+**Atenção:** Diffie-Hellman **não cifra diretamente o texto de uma mensagem**. Também **não autentica, sozinho, as partes**. Quando a autenticação é ausente, um atacante ativo pode tentar se posicionar entre elas.
+
+Variantes efêmeras, como **DHE/ECDHE**, podem contribuir para o **sigilo futuro** (*forward secrecy*), em protocolos apropriadamente projetados.
+
+**Referências:** [RFC 7748](https://www.rfc-editor.org/rfc/rfc7748) e [RFC 8446](https://www.rfc-editor.org/rfc/rfc8446).
+
+## 7. Aplicações no WhatsApp
+
+O **WhatsApp** informa que **mensagens pessoais e chamadas** contam com **criptografia ponta a ponta** (*end-to-end encryption*).
+
+**Ideia principal:** as mensagens são protegidas no dispositivo remetente e recuperadas no dispositivo destinatário autorizado; intermediários no caminho não precisam ter acesso ao conteúdo em texto claro.
+
+**Exemplo didático:**
+
+```text
+Telefone de Alice         Rede / servidores          Telefone de Bob
+Mensagem -> [cifra]  ->  conteúdo protegido  ->  [decifra] -> mensagem
+```
+
+**Limitações:** a proteção do trânsito não impede o roubo de um celular desbloqueado, a instalação de malware ou a divulgação do conteúdo por um dos participantes. Também não implica que todos os metadados sejam ocultos.
+
+Os protocolos e algoritmos utilizados por sistemas de mensagens podem evoluir; não se deve afirmar que todas as comunicações usam exclusivamente AES, RSA ou Diffie-Hellman clássico.
+
+**Referência adicional para estudo:** [especificação Double Ratchet, Signal Foundation](https://signal.org/docs/specifications/doubleratchet/).
+
+## 8. Aplicações em bancos
+
+Instituições financeiras precisam proteger **dados pessoais, credenciais, saldos, movimentações e transações**.
+
+**Três exemplos de mecanismos que podem coexistir:**
+
+1. **Proteção em trânsito (HTTPS/TLS):** ajuda a impedir interceptação e adulteração do conteúdo da conexão entre o cliente e o serviço.
+2. **Proteção em repouso:** criptografia pode proteger arquivos, bases de dados ou dispositivos de armazenamento.
+3. **Controle de acesso e autenticação:** verifica quem solicita os dados e quais operações são permitidas.
+
+**Exemplo:** ao abrir um aplicativo bancário legítimo, a sessão segura protege a comunicação com os servidores. Essa proteção não dispensa autenticação forte ou prevenção contra páginas falsas.
+
+**Ponto importante:** não se deve atribuir um único algoritmo universal a todos os bancos; tecnologias e configurações variam por instituição e serviço.
+
+**Referência técnica geral:** [RFC 8446 — TLS 1.3](https://www.rfc-editor.org/rfc/rfc8446).
+
+## 9. Aplicações em VPNs
+
+**VPN** significa *Virtual Private Network* (rede privada virtual). Ela permite criar um **túnel lógico protegido** entre o dispositivo do usuário e um servidor ou uma rede remota.
+
+**Exemplo:** uma pessoa acessa uma rede corporativa de maneira remota. O cliente VPN protege o tráfego no trecho do túnel, diminuindo a possibilidade de leitura indevida por terceiros nesse caminho.
+
+**Criptografia usada:** depende do protocolo. Implementações **IPsec** podem utilizar **AES-GCM**; **WireGuard** utiliza **ChaCha20-Poly1305**, e não AES.
+
+**Limites:** o túnel VPN não garante anonimato completo, não remove vírus do dispositivo e não substitui HTTPS, controles de acesso ou medidas de segurança no servidor.
+
+**Referência:** [WireGuard — Protocol & Cryptography](https://www.wireguard.com/protocol/).
+
+## 10. Comparação geral
+
+| Mecanismo | Tipo ou finalidade | Exemplo de uso |
+| --- | --- | --- |
+| Criptografia simétrica | Mesma chave secreta cifra e decifra | Dados de arquivos e sessões |
+| AES | Algoritmo simétrico | Conteúdo protegido por AES-GCM |
+| Criptografia assimétrica | Par de chaves pública/privada | Certificados, assinaturas e outras operações |
+| RSA | Algoritmo assimétrico | Assinaturas e criptografia de chave pública |
+| Diffie-Hellman / ECDHE | Acordo de chaves | Segredo para derivação de chaves de sessão |
+| WhatsApp | Aplicação de segurança em mensagens | Criptografia ponta a ponta |
+| Bancos | Proteção de operações financeiras | HTTPS/TLS e controles adicionais |
+| VPNs | Tunelamento protegido | Acesso remoto e conexão entre redes |
+
+### Exemplo de combinação (simplificado)
+
+```text
+Identificação/autenticação de partes
+               |
+               v
+Acordo de chaves (por exemplo, ECDHE)
+               |
+               v
+Derivação de uma chave simétrica
+               |
+               v
+Criptografia de dados (por exemplo, AES-GCM)
+               |
+               v
+Comunicação protegida no contexto do protocolo
+```
+
+Esse desenho é ilustrativo e não descreve de modo idêntico todos os serviços citados.
+
+## 11. Boas práticas de proteção
+
+- Usar autenticação multifator quando disponível.
+- Atualizar dispositivos, sistemas e aplicativos.
+- Proteger chaves secretas e privadas; não publicá-las no GitHub.
+- Utilizar bibliotecas de criptografia confiáveis e protocolos atualizados.
+- Aplicar controle de acesso e princípio do menor privilégio.
+- Verificar o domínio, a identidade do serviço e o certificado da conexão.
+- Preferir modos de criptografia autenticada e respeitar regras de nonce/IV.
+
+## 12. Conclusão
+
+A confidencialidade é essencial para manter dados acessíveis **somente a quem tem autorização**. A criptografia **simétrica** — como AES — protege dados de forma eficiente. A **assimétrica** — exemplificada por RSA — oferece mecanismos de chave pública e assinatura. **Diffie-Hellman** contribui para estabelecer segredos e chaves de sessão. Essas técnicas fazem parte da proteção aplicada a mensagens no **WhatsApp**, transações de **bancos** e túneis de **VPNs**, junto a muitos outros controles.
+
+**Para apresentação:** utilizar os cartões em [publicacao-padlet.md](publicacao-padlet.md).  
+**Referências completas:** [fontes.md](fontes.md).
+
+---
+
+**Origem do escopo acadêmico:** PDF da atividade “Construção de um Painel Colaborativo no Padlet”, páginas 3 a 5. Os detalhes técnicos explicativos foram complementados com as referências indicadas, e não constam necessariamente no material original.
